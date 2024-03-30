@@ -1,0 +1,37 @@
+#include "monty.h"
+
+/**
+ * kill - Executes the opcode
+ * @content: Line content from the Monty bytecode file
+ * @stack: Pointer to the stack
+ * @counter: Line number in the Monty bytecode file
+ * @doc: File pointer to the Monty bytecode file
+ * Return: Always returns 0
+ */
+int kill(char *content, stack_t **stack, unsigned int counter, FILE *doc)
+{
+    instruction_t opcodes[] = {
+        {"push", opcode_push},
+        {"pall", opcode_pall},
+        {NULL, NULL}
+    };
+
+    char *opcode = NULL;
+    int i;
+
+    (void)doc;
+    opcode = strtok(content, " \n\t");
+    if (!opcode || opcode[0] == '#')
+        return 0;
+    monty_data._args = strtok(NULL, " \n\t");
+    for (i = 0; opcodes[i].opcode != NULL; i++)
+    {
+        if (strcmp(opcode, opcodes[i].opcode) == 0)
+        {
+            opcodes[i].f(stack, counter);
+            return 0; 
+        }
+    }
+    fprintf(stderr, "L%d: unknown instruction %s\n", counter, opcode);
+    return 1; 
+}
