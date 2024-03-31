@@ -5,6 +5,7 @@ int kill(char *content, stack_t **stack, unsigned int counter, FILE *doc)
     instruction_t opcodes[] = {
         {"push", opcode_push},
         {"pall", opcode_pall},
+	{"pint", opcode_pint},
         {NULL, NULL}
     };
 

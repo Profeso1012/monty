@@ -30,6 +30,9 @@ extern monty_data_t monty_data;
 int kill(char *content, stack_t **stack, unsigned int counter, FILE *doc);
 void opcode_push(stack_t **stack, unsigned int line_num);
 void opcode_pall(stack_t **stack, unsigned int line_num);
-stack_t *add_node(stack_t **stack, int num);                void empty_stack(stack_t *stack);
+stack_t *add_node(stack_t **stack, int num);
+void empty_stack(stack_t *stack);
+void opcode_pint(stack_t **stack, unsigned int line_number);
+
 
 #endif /* MONTY_H */
